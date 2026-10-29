@@ -1,0 +1,9 @@
+[
+  {"id":"otp_kyc","context":"account","message":"Dear customer, your KYC is pending. Share your OTP immediately to avoid account blocked.","expected_min_score":35},
+  {"id":"job_fee","context":"job","message":"Work from home, earn Rs 5000 per day. Pay Rs 299 registration fee today only for instant joining.","expected_min_score":35},
+  {"id":"upi_pin","context":"payment","message":"Customer care: enter your UPI PIN to receive your refund.","expected_min_score":35},
+  {"id":"legitimate","context":"account","message":"Your bank statement for October is ready in the official mobile banking app.","expected_max_score":14},
+  {"id":"urgent_but_harmless","context":"general","message":"Urgent: the project meeting has moved to 3 PM today.","expected_max_score":14},
+  {"id":"ambiguous","context":"general","message":"Hi, please call me when you are free. I need to discuss a payment.","expected_max_score":14},
+  {"id":"suspicious_url","context":"phishing","message":"Verify your account today at https://secure-kyc-update.example/login to avoid suspension.","expected_min_score":25}
+]

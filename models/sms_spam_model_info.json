@@ -1,0 +1,20 @@
+{
+  "model": "dual TF-IDF (char 3-5gram + word 1-2gram) + Logistic Regression",
+  "sources": {
+    "sms_spam_train.csv": 5574,
+    "india_scam_synthetic.csv": 2360
+  },
+  "dataset": "UCI SMS Spam Collection + India-first synthetic scam/ham data",
+  "total_rows": 7934,
+  "spam_rows": 1957,
+  "ham_rows": 5977,
+  "split": "80/20 stratified holdout, random_state=42",
+  "metrics": {
+    "accuracy": 0.9918,
+    "spam_precision": 0.9948,
+    "spam_recall": 0.9719,
+    "spam_f1": 0.9832
+  },
+  "trained_at_utc": "2026-10-28T18:50:34.806547+00:00",
+  "limitations": "This model is a secondary signal in TrustLens. It does not change the evidence-weighted risk score. The synthetic India-specific data covers common scam patterns but is not a calibrated fraud detector."
+}

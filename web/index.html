@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TrustLens local, explainable scam detection." />
+  <title>TrustLens — Evidence-first digital safety</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top" aria-label="TrustLens home"><span class="brand-mark">TL</span><span>Trust<span>Lens</span></span></a>
+      <div class="nav-label">Workspace</div>
+      <nav><a class="active" href="#analyze">Analyze message</a><a href="#demo">Demo lab</a><a href="#history">Session history</a></nav>
+      <div class="privacy-card"><span class="eyebrow">Privacy mode</span><strong>Local by default</strong><p>Your message is analyzed in this browser session by the local rule engine. No raw content is saved.</p></div>
+      <div class="side-footer">TrustLens v1.0<br />Decision support, not a safety guarantee.</div>
+    </aside>
+
+    <main id="top" class="main">
+      <header class="topbar"><div><span class="eyebrow">Digital safety workspace</span><h1>See the evidence before you act.</h1></div><div class="status"><i></i> Hybrid local analysis online</div></header>
+      <section id="analyze" class="analysis-grid">
+        <section class="panel compose-panel">
+          <div class="panel-head"><div><span class="eyebrow">Message input</span><h2>Inspect a suspicious message</h2></div><span class="local-badge">No API key needed</span></div>
+          <label class="context-label" for="context">Message context</label>
+          <div class="context-tabs" role="group" aria-label="Message context">
+            <button data-context="payment">UPI / payment</button><button data-context="job">Job / recruitment</button><button data-context="phishing">Phishing link</button><button data-context="account">Account security</button><button class="selected" data-context="general">General</button>
+          </div>
+          <p id="contextHint" class="context-hint">General message — SMS, WhatsApp messages, emails, or anything that does not fit a specific category.</p>
+          <label class="sr-only" for="message">Suspicious message</label>
+          <textarea id="message" maxlength="8000" placeholder="Paste an SMS, WhatsApp message, email, job offer, or payment request here…"></textarea>
+          <div class="input-footer"><span id="charCount">0 / 8,000</span><button id="clearBtn" class="text-button">Clear</button></div>
+          <p class="privacy-note">Never paste real OTPs, passwords, PINs, card details, or private keys. Submitted text is treated as sensitive.</p>
+          <div class="cta-row"><button id="analyzeBtn" class="primary">Analyze safely <span>→</span></button><span id="error" role="alert"></span></div>
+        </section>
+
+        <section id="emptyResult" class="panel empty-result"><div class="lens-icon">◌</div><span class="eyebrow">Evidence lens</span><h2>Ready when you are</h2><p>Analyze a message to see grounded warning signs, a risk breakdown, and safe next steps.</p><div class="empty-list"><span>Exact text evidence</span><span>Contextual risk score</span><span>Practical action plan</span></div></section>
+
+        <section id="result" class="result-area hidden" aria-live="polite">
+          <div class="result-top">
+            <div class="panel risk-card"><div><span class="eyebrow">Evidence-weighted risk</span><h2 id="riskLabel">—</h2><p id="summary">—</p></div><div class="score-ring" id="scoreRing"><span id="score">0</span><small>/100</small></div></div>
+            <div class="panel classification-card"><span class="eyebrow">Assessment</span><strong id="classification">—</strong><p id="scoringNote">—</p><div class="ml-signal"><span>Local ML SMS signal</span><b id="mlLabel">—</b><small id="mlNote">—</small></div><div class="confidence"><span>Analysis confidence</span><b id="confidence">—</b><small id="uncertainty">—</small></div></div>
+          </div>
+          <section id="aiCard" class="panel ai-card hidden">
+            <span class="ai-badge">Powered by Gemini</span>
+            <h2>AI Safety Explanation</h2>
+            <p id="aiText" class="ai-explanation">—</p>
+            <small id="aiNote" class="ai-note">—</small>
+          </section>
+          <section class="panel evidence-panel"><div class="panel-head"><div><span class="eyebrow">Evidence lens</span><h2>What triggered this result</h2></div><span id="findingCount" class="count-pill">0 findings</span></div><div id="highlightedMessage" class="message-preview"></div><p class="microcopy">Highlighted text is detected evidence. A highlighted phrase is not confirmation that a message is fraudulent.</p><div id="findings" class="findings"></div></section>
+          <section id="linkChecks" class="panel link-checks hidden"></section>
+          <section class="actions-grid"><section class="panel action-card"><span class="eyebrow">Safe action plan</span><h2>What to do next</h2><div id="doList"></div></section><section class="panel action-card avoid"><span class="eyebrow">Protect yourself</span><h2>What not to do</h2><div id="dontList"></div></section><section class="panel action-card"><span class="eyebrow">Verify independently</span><h2>Trusted path</h2><div id="verifyList"></div></section></section>
+          <div class="report-actions"><button id="copyBtn" class="secondary">Copy safety report</button><button id="downloadBtn" class="secondary">Download .txt report</button></div>
+        </section>
+      </section>
+
+      <section id="demo" class="demo-section"><div class="section-head"><div><span class="eyebrow">Interactive demo lab</span><h2>Compare real-world scenarios</h2></div><p>All examples are fictional demonstrations. None contain working phishing links.</p></div><div id="samples" class="sample-grid"></div></section>
+      <section id="history" class="history-section"><div class="section-head"><div><span class="eyebrow">This session only</span><h2>Analysis history</h2></div><button id="clearHistory" class="text-button">Clear history</button></div><div id="historyList" class="history-list"><p class="history-empty">No analyses yet. Results are kept only in this browser tab and never include message text.</p></div></section>
+      <footer>TrustLens provides decision support from observable text patterns. It cannot verify senders or confirm fraud. For a suspected financial scam in India, contact your bank using an official channel and consider reporting through appropriate official cybercrime channels.</footer>
+    </main>
+  </div>
+  <script src="/assets/app.js"></script>
+</body>
+</html>
