@@ -3,7 +3,7 @@ from typing import Literal
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -14,6 +14,13 @@ ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")  # loads GEMINI_API_KEY if present; safe if file absent
 app = FastAPI(title="TrustLens", version="1.0.0", docs_url=None, redoc_url=None)
 
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request, exc):
+    return JSONResponse(
+        status_code=500,
+        content={"detail": f"Internal server error: {str(exc)}"}
+    )
 
 
 class AnalysisRequest(BaseModel):
@@ -27,6 +34,11 @@ def analyze(request: AnalysisRequest):
         return analyze_message(request.message, request.context)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        return JSONResponse(
+            status_code=500,
+            content={"detail": f"Analysis error: {str(exc)}"}
+        )
 
 
 from .ai_explainer import _get_model

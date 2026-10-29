@@ -1,7 +1,6 @@
 # TrustLens 🔍
 
 **Evidence-First Digital Safety Workspace for Suspicious Messages**  
-*Hackathon Theme: Cybersecurity · Generative AI · Digital Safety*
 
 ---
 
@@ -182,6 +181,32 @@ buildacthon/
 ├── requirements.txt           # Python package requirements
 ├── test_messages.md           # 32 Curated test cases across all categories
 └── README.md                  # Project documentation
+```
+
+---
+
+## 🎤 60-Second Pitch
+
+> *"TrustLens is an explainable digital-safety workspace built for the moment a suspicious message arrives. Instead of forcing users to trust an opaque score, TrustLens pinpoints the exact warning signs—an OTP request, a UPI collect request, an advance job fee, or an obfuscated link—and turns that evidence into a concrete action plan. Designed specifically for India's digital landscape, it recognizes UPI scams, KYC pressures, and Hinglish phrasing. By pairing deterministic cybersecurity rules with a local ML classifier and a Gemini Generative AI explanation layer, TrustLens provides immediate clarity while preserving user privacy by running locally without persistent message storage."*
+
+---
+
+## ⚖️ Judge Q&A Cheatsheet
+
+**Q: Is the risk score a scam probability?**  
+**A:** No. It is an evidence-weighted heuristic severity score on a transparent 0–100 scale. We explicitly label it as evidence-weighted risk rather than a calibrated fraud probability to avoid false certainty.
+
+**Q: How does the system prevent keyword-based false positives?**  
+**A:** Repeated keywords in the same group (e.g., repeating *"urgent"* three times) are deduplicated and do not increase the score. Furthermore, legitimate bank notifications and benign meeting alerts score in the "No strong signals / Inconclusive" band.
+
+**Q: Where does Generative AI fit in?**  
+**A:** While the deterministic engine ensures zero-hallucination evidence extraction, Gemini provides a plain-language synthesis that translates technical indicators into simple explanations for non-technical users. If offline, the app degrades gracefully without breaking.
+
+**Q: Does TrustLens open or test links?**  
+**A:** Never. TrustLens parses only the observable syntactic structure of URLs (IP addresses, suspicious TLDs, keyword lures). It never resolves DNS, sends HTTP requests, or follows redirects.
+
+**Q: What happens to the message text when submitted?**  
+**A:** Messages are processed in-memory for the duration of the request only. The server does not maintain a database or log message bodies, and client-side history deliberately excludes raw message text.
 
 ---
 
