@@ -198,7 +198,7 @@ h1 {
 /* Workspace */
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  grid-template-columns: minmax(0, 1fr) minmax(400px, 1fr);
   gap: 20px;
   align-items: stretch;
 }
@@ -472,23 +472,14 @@ h1 {
 .result-panel {
   padding: 26px;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
   min-height: 480px;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
 }
 
-.result-panel::after {
-  content: '';
-  position: absolute;
-  right: -58px;
-  top: -76px;
-  width: 190px;
-  height: 190px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #edf6e8 0%, rgba(237, 246, 232, 0) 70%);
-  pointer-events: none;
-}
+
 
 .result-panel .panel-head {
   position: relative;
@@ -1284,6 +1275,29 @@ h1 {
   transform: translate(-50%, 0);
 }
 
+
+
+/* Subtle scrollbar for result panel */
+.result-panel::-webkit-scrollbar {
+  width: 5px;
+}
+.result-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.result-panel::-webkit-scrollbar-thumb {
+  background: #d5ded8;
+  border-radius: 99px;
+}
+.result-panel::-webkit-scrollbar-thumb:hover {
+  background: #b0bfb5;
+}
+/* Spin animation for loading state */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spin {
+  animation: spin 0.8s linear infinite;
+}
 /* Responsive Media Queries */
 @media (max-width: 960px) {
   .shell {
